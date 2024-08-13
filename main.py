@@ -3,8 +3,9 @@ from tkinter import ttk
 
 def calcular_fresnel():
     try:
-        distancia = float(entry_distancia.get())
-        frecuencia = float(entry_frecuencia.get())
+        distancia = float(entry_distancia.get().replace(',', '.'))
+        frecuencia = float(entry_frecuencia.get().replace(',', '.'))
+        
         fresnel_metros = 8.656 * ((distancia / frecuencia) ** 0.5)
         unidad = unidad_var.get()
 
@@ -15,10 +16,11 @@ def calcular_fresnel():
         else:  # Metros
             resultado = fresnel_metros
 
-        etiqueta_resultado.config(text=f"Zona de Fresnel: {resultado:.2f} {unidad.lower()}", foreground="#4CAF50")
+        etiqueta_resultado.config(text=f"Zona de Fresnel: {resultado:.4f} {unidad.lower()}", foreground="#4CAF50")
     
     except ValueError:
         etiqueta_resultado.config(text="Por favor, ingrese valores numéricos válidos.", foreground="red")
+
 
 # Configuracion de la ventana principal
 ventana = tk.Tk()
